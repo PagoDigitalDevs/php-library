@@ -1,0 +1,23 @@
+{
+    "name": "pago-digital/php-library",
+    "description": "Libreria de pago digital para php",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Juan Sebastian Fernandez Saez",
+            "email": "jsebas1198@protonmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "spomky-labs/base64url": "v2.x-dev",
+        "guzzlehttp/guzzle": "7.5.x-dev",
+        "defuse/php-encryption": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\":"app"
+        }
+    }
+}
