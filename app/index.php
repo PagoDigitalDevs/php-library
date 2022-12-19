@@ -8,7 +8,7 @@ class PagoDigital
 {
 
     public $payment;
-    public function __construct($commerceToken, $commereId)
+    public function __construct($commereId, $commerceToken)
     {
         $this->payment = new PaymentController(
             $commereId,
