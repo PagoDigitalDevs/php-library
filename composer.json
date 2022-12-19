@@ -9,7 +9,6 @@
             "email": "jsebas1198@protonmail.com"
         }
     ],
-    "minimum-stability": "stable",
     "require": {
         "spomky-labs/base64url": "v2.x-dev",
         "guzzlehttp/guzzle": "7.5.x-dev",
