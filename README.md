@@ -46,7 +46,7 @@ $pagoDigital = new PagoDigital(
     token: '791a736e949d4ec57af5684679bea5d5a9f485c5'
 );
 
-pagoDigital->payment->paymentWithPlatform(
+$paymentResponse = $pagoDigital->payment->paymentWithPlatform(
     $amount= 12500,
     $description= "Pago de prueba con la librería",
     $email= "example@gmail.com",
@@ -115,7 +115,7 @@ $pagoDigital = new PagoDigital(
 );
 
 
-pagoDigital->payment->paymentWithPlatform(
+$paymentResponse = $pagoDigital->payment->paymentWithPlatform(
     $amount= 12500,
     $description= "Pago de prueba con la librería",
     $reference= "pago-22",
