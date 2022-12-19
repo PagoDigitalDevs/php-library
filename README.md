@@ -18,7 +18,7 @@ Para comenzar a utilizar es necesario estar registrado en
 Primeramente se debe importar y crear una instancia de PagoDigital
 
 ```php
-use pago-digital/php-library;
+use PagoDigital/PagoDigital;
 ...
 
 $pagoDigital = new PagoDigital(
