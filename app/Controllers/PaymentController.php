@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace PagoDigital\Controllers;
 
 define('frontBaseUrl',  "https://pago.pagodigital.com.py");
 define('backBaseUrl',   "https://backend.pagodigital.com.py");

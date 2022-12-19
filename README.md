@@ -39,7 +39,7 @@ Luego de instanciar PagoDigital vas a poder utilizar todas las funciones dentro 
 Vas a poder realizar un pago a través de todas nuestras plataformas registradas.
 
 ```php
-use pago-digital/php-library;
+use PagoDigital/PagoDigital;
 ...
 $pagoDigital = new PagoDigital(
     commerceId: 120,
@@ -107,7 +107,7 @@ puedes redirigir directamente a todas nuestras plataformas dentro de una página
 PagoDigital y dejar que nosostros nos encarguemos del resto.
 
 ```php
-use pago-digital/php-library;
+use PagoDigital/PagoDigital;
 ...
 $pagoDigital = new PagoDigital(
     commerceId: 120,
@@ -115,7 +115,7 @@ $pagoDigital = new PagoDigital(
 );
 
 
-pagoDigital.payment.paymentWithPlatform(
+pagoDigital->payment->paymentWithPlatform(
     $amount= 12500,
     $description= "Pago de prueba con la librería",
     $reference= "pago-22",

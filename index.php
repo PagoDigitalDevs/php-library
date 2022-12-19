@@ -2,7 +2,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use App\Controllers\PaymentController;
+use PagoDigital\Controllers\PaymentController;
 
 class PagoDigital
 {
