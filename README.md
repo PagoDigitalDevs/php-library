@@ -22,8 +22,8 @@ use PagoDigital\PagoDigital;
 ...
 
 $pagoDigital = new PagoDigital(
-    commerceId: 120,
-    token: '791a736e949d4ec57af5684679bea5d5a9f485c5'
+    $commerceId = 120,
+    $token = '791a736e949d4ec57af5684679bea5d5a9f485c5'
 );
 ```
 
@@ -43,20 +43,20 @@ use PagoDigital\PagoDigital;
 ...
 
 $pagoDigital = new PagoDigital(
-    commerceId: 120,
-    token: '791a736e949d4ec57af5684679bea5d5a9f485c5'
+    $commerceId = 120,
+    $token = '791a736e949d4ec57af5684679bea5d5a9f485c5'
 );
 
 $paymentResponse = $pagoDigital->payment->paymentWithPlatform(
-    $amount= 12500,
-    $description= "Pago de prueba con la librería",
-    $email= "example@gmail.com",
-    $payerIdentification= "485987",
-    $payerName= "Adolf Hitler",
-    $phone= "0984856321",
-    $platform= "tigo",
-    $reference= "pago-22",
-    $location= "-27.55486,-2744157"
+    $amount = 12500,
+    $description = "Pago de prueba con la librería",
+    $email = "example@gmail.com",
+    $payerIdentification = "485987",
+    $payerName = "Adolf Hitler",
+    $phone = "0984856321",
+    $platform = "tigo",
+    $reference = "pago-22",
+    $location = "-27.55486,-2744157"
 )
 
 ```
@@ -112,14 +112,14 @@ use PagoDigital\PagoDigital;
 ...
 
 $pagoDigital = new PagoDigital(
-    commerceId: 120,
-    token: '791a736e949d4ec57af5684679bea5d5a9f485c5'
+    $commerceId = 120,
+    $token = '791a736e949d4ec57af5684679bea5d5a9f485c5'
 );
 
 $paymentResponse = $pagoDigital->payment->paymentWithPlatform(
-    $amount= 12500,
-    $description= "Pago de prueba con la librería",
-    $reference= "pago-22",
+    $amount = 12500,
+    $description = "Pago de prueba con la librería",
+    $reference = "pago-22",
 )
 ```
 
