@@ -18,7 +18,7 @@ Para comenzar a utilizar es necesario estar registrado en
 Primeramente se debe importar y crear una instancia de PagoDigital
 
 ```php
-use PagoDigital;
+use PagoDigital\PagoDigital;
 ...
 
 $pagoDigital = new PagoDigital(
@@ -39,8 +39,9 @@ Luego de instanciar PagoDigital vas a poder utilizar todas las funciones dentro 
 Vas a poder realizar un pago a través de todas nuestras plataformas registradas.
 
 ```php
-use PagoDigital;
+use PagoDigital\PagoDigital;
 ...
+
 $pagoDigital = new PagoDigital(
     commerceId: 120,
     token: '791a736e949d4ec57af5684679bea5d5a9f485c5'
@@ -107,13 +108,13 @@ puedes redirigir directamente a todas nuestras plataformas dentro de una página
 PagoDigital y dejar que nosostros nos encarguemos del resto.
 
 ```php
-use PagoDigital;
+use PagoDigital\PagoDigital;
 ...
+
 $pagoDigital = new PagoDigital(
     commerceId: 120,
     token: '791a736e949d4ec57af5684679bea5d5a9f485c5'
 );
-
 
 $paymentResponse = $pagoDigital->payment->paymentWithPlatform(
     $amount= 12500,
