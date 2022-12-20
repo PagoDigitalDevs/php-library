@@ -73,7 +73,6 @@ class PaymentController
             $res = $client->request('POST', "/transaction", ['json' => $information]);
             if ($res->getStatusCode() == '200') {
                 $json =(string) $res->getBody();
-                echo $json;
                 return $json;
             }
             return $res;
