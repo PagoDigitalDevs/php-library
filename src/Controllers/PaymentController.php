@@ -14,10 +14,11 @@ class PaymentController
     public  $commerceToken;
     public $commerceId;
 
-    public function __construct($commerceToken, $commerceId, $reactNative = false)
+    public function __construct($commerceId,$commerceToken, $reactNative = false)
     {
-        $this->commerceToken = $commerceToken;
         $this->commerceId = $commerceId;
+        $this->commerceToken = $commerceToken;
+       
     }
 
     /**
@@ -48,28 +49,32 @@ class PaymentController
         $currency = 'PYG'
     ) {
         try {
-            $token = strval(hash('sha256', $reference . strval($amount) . $this->commerceToken));
+            echo 'transactionId:'.$reference.'monto:'.$amount.'commerceToken:'.$this->commerceToken.'\n';
+            $token = hash('sha256', $reference.strval($amount).$this->commerceToken);
             $client = new Client([
-                'base_uri' => BACKBASEURL . "/transaction",
+                'base_uri' => BACKBASEURL,
                 'timeout'  => 5.0,
             ]);
             $information = [
-                'amount' => $amount,
-                'description' => $description,
-                'email' => $email,
-                'payerIdentification' => $payerIdentification,
-                'payerName' => $payerName,
                 'phone' => $phone,
+                'amount' => $amount,
                 'platform' => $platform,
+                'email' => $email,
+                'commerceId'=> $this->commerceId,
+                'description' => $description,
+                'token' => $token,
+                'transactionId' => $reference,
+                'payerName' => $payerName,
+                'payerIdentification' => $payerIdentification,
                 'location' => $location,
                 'currency' => $currency,
-                'transactionId' => $reference,
-                'token' => $token,
-
             ];
-            $res = $client->request('POST', '', ['form_params' => $information]);
+            echo print_r($information);
+            $res = $client->request('POST', "/transaction", ['json' => $information]);
             if ($res->getStatusCode() == '200') {
-                echo "Se inserto un post ";
+                $json =(string) $res->getBody();
+                echo $json;
+                return $json;
             }
             return $res;
         } catch (\Exception $e) {
