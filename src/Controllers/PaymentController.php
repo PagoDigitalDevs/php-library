@@ -2,8 +2,8 @@
 
 namespace PagoDigital\Controllers;
 
-define('frontBaseUrl',  "https://pago.pagodigital.com.py");
-define('backBaseUrl',   "https://backend.pagodigital.com.py");
+define('FRONTBASEURL',  "https://pago.pagodigital.com.py");
+define('BACKBASEURL',   "https://backend.pagodigital.com.py");
 
 use GuzzleHttp\Client;
 use Defuse\Crypto\Crypto;
@@ -50,7 +50,7 @@ class PaymentController
         try {
             $token = strval(hash('sha256', $reference . strval($amount) . $this->commerceToken));
             $client = new Client([
-                'base_uri' => backBaseUrl . "/transaction",
+                'base_uri' => BACKBASEURL . "/transaction",
                 'timeout'  => 5.0,
             ]);
             $information = [
@@ -94,7 +94,7 @@ class PaymentController
     ) {
         try {
             $merchantTransactionId =  strval(strtotime("now"));
-            $baseLink = frontBaseUrl . "/link";
+            $baseLink = FRONTBASEURL . "/link";
             $dataForEncode = [
                 'amount' => $amount,
                 'commerceId' => $this->commerceId,
