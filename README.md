@@ -9,6 +9,11 @@ Para instalar la librería de PagoDigital se puede hacer con composer:
 ```bash
 composer require pago-digital/php-library
 ```
+Para evitar conflictos, en el archivo composer.json, establece: 
+
+```bash
+"minimum-stability": "dev"
+```
 
 ## Como usar
 
