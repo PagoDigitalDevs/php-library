@@ -32,7 +32,7 @@ class PaymentController
      * @param string $reference Referencia de pago creada por el comercio
      * @param ECurrency $currency Moneda en la que se va a cobrar (Así la moneda se coloque en USD, el precio amount debe ir en Gs.)
      * @param string $location Localización del pago (Opcional)
-     * @returns array Link de redireccionamiento junto a su ID generado dentro de PAgoDigital
+     * @returns array Link de redireccionamiento junto a su ID generado dentro de PagoDigital
      */
     public function paymentWithPlatform(
         $amount,
@@ -85,7 +85,7 @@ class PaymentController
      * @param string $reference Referencia de pago creada por el comercio
      * @param string $description Descripción del cobro realizada por el comercio
      * @param ECurrency $currency Moneda en la que se va a cobrar (Así la moneda se coloque en USD, el precio amount debe ir en Gs.)
-     * @returns array Link de pago junto a su ID generado dentro de PAgoDigital
+     * @returns array Link de pago junto a su ID generado dentro de PagoDigital
      */
     public  function paymentWithLink(
         $amount,
