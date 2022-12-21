@@ -6,8 +6,6 @@ define('FRONTBASEURL',  "https://pago.pagodigital.com.py");
 define('BACKBASEURL',   "https://backend.pagodigital.com.py");
 
 use GuzzleHttp\Client;
-use Defuse\Crypto\Crypto;
-use Base64Url\Base64Url;
 
 class PaymentController
 {
@@ -18,7 +16,6 @@ class PaymentController
     {
         $this->commerceId = $commerceId;
         $this->commerceToken = $commerceToken;
-       
     }
 
     /**
@@ -97,7 +94,7 @@ class PaymentController
         $currency = 'PYG'
     ) {
         try {
-            $merchantTransactionId =  strval(strtotime("now"));
+            $merchantTransactionId =  strval(round(microtime(true) * 1000));
             $baseLink = FRONTBASEURL . "/link";
             $dataForEncode = [
                 'amount' => $amount,
@@ -108,13 +105,28 @@ class PaymentController
                 'merchantTransactionId' => $merchantTransactionId,
                 'currency' => $currency,
             ];
-            $dataEncode = Crypto::encrypt($dataForEncode, $this->commerceToken);
-            $data64 = Base64Url::encode($dataEncode . "|" . $this->commerceId);
-            $link = $baseLink . '/' . $data64;
-            return [
+            $text = json_encode($dataForEncode);
+            $method = 'AES-128-CBC';
+            $key = $this->commerceToken;
+            $isSecure = false; 
+            $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($method), $isSecure);
+            if(!$isSecure){
+                throw new \Exception("El IV no es seguro");
+            }
+            $ciphertext = openssl_encrypt(
+                $text,
+                $method,
+                $key,
+                OPENSSL_RAW_DATA,
+                $iv
+             );
+            $ciphertext = base64_encode($ciphertext);
+            $data64 = base64_encode($ciphertext."|". $this->commerceId);
+            $link = $baseLink.'/'.$data64;
+            return print_r([
                 'link' => $link,
                 'mechantTransactionId' => $merchantTransactionId
-            ];
+            ]);
         } catch (\Exception $e) {
             echo 'Error',  $e->getMessage(), "\n";
         }

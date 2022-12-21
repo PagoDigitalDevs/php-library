@@ -10,9 +10,7 @@
         }
     ],
     "require": {
-        "spomky-labs/base64url": "v2.x-dev",
-        "guzzlehttp/guzzle": "7.5.x-dev",
-        "defuse/php-encryption": "dev-master"
+        "guzzlehttp/guzzle": "7.5.x-dev"
     },
     "autoload": {
         "psr-4": {
