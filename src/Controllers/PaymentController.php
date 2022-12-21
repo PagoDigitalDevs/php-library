@@ -5,6 +5,7 @@ namespace PagoDigital\Controllers;
 define('FRONTBASEURL',  "https://pago.pagodigital.com.py");
 define('BACKBASEURL',   "https://backend.pagodigital.com.py");
 
+use Blocktrail\CryptoJSAES\CryptoJSAES;
 use GuzzleHttp\Client;
 
 class PaymentController
@@ -106,21 +107,9 @@ class PaymentController
                 'currency' => $currency,
             ];
             $text = json_encode($dataForEncode);
-            $method = 'AES-128-CBC';
             $key = $this->commerceToken;
-            $isSecure = false; 
-            $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($method), $isSecure);
-            if(!$isSecure){
-                throw new \Exception("El IV no es seguro");
-            }
-            $ciphertext = openssl_encrypt(
-                $text,
-                $method,
-                $key,
-                OPENSSL_RAW_DATA,
-                $iv
-             );
-            $ciphertext = base64_encode($ciphertext);
+            $encrypted = CryptoJSAES::encrypt($text, $key);
+            $ciphertext = base64_encode($encrypted);
             $data64 = base64_encode($ciphertext."|". $this->commerceId);
             $link = $baseLink.'/'.$data64;
             return print_r([
