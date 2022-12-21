@@ -5,8 +5,9 @@ namespace PagoDigital\Controllers;
 define('FRONTBASEURL',  "https://pago.pagodigital.com.py");
 define('BACKBASEURL',   "https://backend.pagodigital.com.py");
 
-use Blocktrail\CryptoJSAES\CryptoJSAES;
 use GuzzleHttp\Client;
+use Blocktrail\CryptoJSAES\CryptoJSAES;
+
 
 class PaymentController
 {
@@ -21,18 +22,17 @@ class PaymentController
 
     /**
      * @description Crea un pago a través de cualquier plataforma
-     * @param {IPaymentPlatform} payment Párametros de pago con una plataforma
-     * @param {number} payment.amount Monto que se va a cobrar
-     * @param {string} payment.reference Referencia de pago creada por el comercio
-     * @param {string} payment.description Descripción del cobro realizada por el comercio
-     * @param {string} payment.phone Número telefonico de la persona que está pagando
-     * @param {TPlatform} payment.platform Plataforma en la que se va a realizar el pago
-     * @param {string} payment.email Correo electrónico de la persona que está pagando
-     * @param {string} payment.payerName Nombre de la persona que realiza el pago
-     * @param {string} payment.payerIdentification Identificación de la persona que realiza el pago
-     * @param {ECurrency} payment.currency Moneda en la que se va a cobrar (Así la moneda se coloque en USD, el precio amount debe ir en Gs.)
-     * @param {string} payment.location Localización del pago (Opcional)
-     * @returns {Promise<IPaymentLinkResponse>} Link de redireccionamiento junto a su ID generado dentro de PAgoDigital
+     * @param number $amount Monto que se va a cobrar
+     * @param string $description Descripción del cobro realizada por el comercio
+     * @param string $email Correo electrónico de la persona que está pagando
+     * @param string $payerIdentification Identificación de la persona que realiza el pago
+     * @param string $payerName Nombre de la persona que realiza el pago
+     * @param string $phone Número telefonico de la persona que está pagando
+     * @param TPlatform $platform Plataforma en la que se va a realizar el pago
+     * @param string $reference Referencia de pago creada por el comercio
+     * @param ECurrency $currency Moneda en la que se va a cobrar (Así la moneda se coloque en USD, el precio amount debe ir en Gs.)
+     * @param string $location Localización del pago (Opcional)
+     * @returns array Link de redireccionamiento junto a su ID generado dentro de PAgoDigital
      */
     public function paymentWithPlatform(
         $amount,
@@ -81,12 +81,11 @@ class PaymentController
 
     /**
      * @description Realiza un pago a través del link de pago de PagoDigital
-     * @param {IPaymentLink} payment Datos de la transacción de pago
-     * @param {number} payment.amount Monto que se va a cobrar
-     * @param {string} payment.reference Referencia de pago creada por el comercio
-     * @param {string} payment.description Descripción del cobro realizada por el comercio
-     * @param {ECurrency} payment.currency Moneda en la que se va a cobrar (Así la moneda se coloque en USD, el precio amount debe ir en Gs.)
-     * @returns {Promise<string>} Link de pago
+     * @param number $amount Monto que se va a cobrar
+     * @param string $reference Referencia de pago creada por el comercio
+     * @param string $description Descripción del cobro realizada por el comercio
+     * @param ECurrency $currency Moneda en la que se va a cobrar (Así la moneda se coloque en USD, el precio amount debe ir en Gs.)
+     * @returns array Link de pago junto a su ID generado dentro de PAgoDigital
      */
     public  function paymentWithLink(
         $amount,
