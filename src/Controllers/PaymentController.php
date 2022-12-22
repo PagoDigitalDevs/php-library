@@ -69,8 +69,8 @@ class PaymentController
             $res = $client->request('POST', "/transaction", ['json' => $information]);
             if ($res->getStatusCode() == '200') {
                 $json =(string) $res->getBody();
-                $json = json_decode($json,  true);
-                return print_r($json['data']);
+                $json = json_decode($json, true);
+                return print_r($json['data'], true);
             }
             return $res;
         } catch (\Exception $e) {
@@ -114,7 +114,7 @@ class PaymentController
                 'redirectUrl' => $link,
                 'transactionId' => $merchantTransactionId
             ];
-            return print_r($res);
+            return print_r($res, true);
         } catch (\Exception $e) {
             echo 'Error',  $e->getMessage(), "\n";
         }
