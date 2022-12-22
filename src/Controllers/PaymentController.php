@@ -111,10 +111,12 @@ class PaymentController
             $ciphertext = base64_encode($encrypted);
             $data64 = base64_encode($ciphertext."|". $this->commerceId);
             $link = $baseLink.'/'.$data64;
-            return print_r([
+            $res=[
                 'link' => $link,
-                'mechantTransactionId' => $merchantTransactionId
-            ]);
+                'merchantTransactionId' => $merchantTransactionId
+            ];
+            $json = json_encode($res, JSON_UNESCAPED_SLASHES);
+            return $json;
         } catch (\Exception $e) {
             echo 'Error',  $e->getMessage(), "\n";
         }
