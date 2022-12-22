@@ -1,6 +1,6 @@
 {
     "name": "pagodigital/php-library",
-    "description": "Libreria de pago digital para php",
+    "description": "Librería de pago digital para php",
     "type": "library",
     "license": "MIT",
     "authors": [
