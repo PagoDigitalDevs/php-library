@@ -7,7 +7,7 @@ PagoDigital es la mejor solución para todos los comercios de implementar todos 
 Para instalar la librería de PagoDigital se puede hacer con composer:
 
 ```bash
-composer require pago-digital/php-library
+composer require pagodigital/php-library"
 ```
 Para evitar conflictos, en el archivo composer.json, establece: 
 
@@ -61,7 +61,7 @@ $paymentResponse = $pagoDigital->payment->paymentWithPlatform(
     $phone = "0984856321",
     $platform = "tigo",
     $reference = "pago-22",
-    $location = "-27.55486,-2744157"
+    $location = "-27.55486, -2744157"
 )
 
 ```
@@ -124,7 +124,7 @@ $pagoDigital = new PagoDigital(
 $paymentResponse = $pagoDigital->payment->paymentWithLink(
     $amount = 12500,
     $description = "Pago de prueba con la librería",
-    $reference = "pago-22",
+    $reference = "pago-22"
 )
 ```
 
