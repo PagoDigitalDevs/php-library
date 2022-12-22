@@ -47,7 +47,6 @@ class PaymentController
         $currency = 'PYG'
     ) {
         try {
-            echo 'transactionId:'.$reference.'monto:'.$amount.'commerceToken:'.$this->commerceToken.'\n';
             $token = hash('sha256', $reference.strval($amount).$this->commerceToken);
             $client = new Client([
                 'base_uri' => BACKBASEURL,
@@ -67,11 +66,11 @@ class PaymentController
                 'location' => $location,
                 'currency' => $currency,
             ];
-            echo print_r($information);
             $res = $client->request('POST', "/transaction", ['json' => $information]);
             if ($res->getStatusCode() == '200') {
                 $json =(string) $res->getBody();
-                return $json;
+                $json = json_decode($json,  true);
+                return print_r($json['data']);
             }
             return $res;
         } catch (\Exception $e) {
@@ -112,11 +111,10 @@ class PaymentController
             $data64 = base64_encode($ciphertext."|". $this->commerceId);
             $link = $baseLink.'/'.$data64;
             $res=[
-                'link' => $link,
-                'merchantTransactionId' => $merchantTransactionId
+                'redirectUrl' => $link,
+                'transactionId' => $merchantTransactionId
             ];
-            $json = json_encode($res, JSON_UNESCAPED_SLASHES);
-            return $json;
+            return print_r($res);
         } catch (\Exception $e) {
             echo 'Error',  $e->getMessage(), "\n";
         }

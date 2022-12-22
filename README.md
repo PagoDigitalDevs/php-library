@@ -34,7 +34,7 @@ $pagoDigital = new PagoDigital(
 
 Luego de instanciar PagoDigital vas a poder utilizar todas las funciones dentro de la librería
 
-| Párametro  |  Tipo  |                    Descripción                     |
+| Parámetro  |  Tipo  |                    Descripción                     |
 | :--------: | :----: | :------------------------------------------------: |
 | commerceId | number |   ID del comercio que va a utilizar la librería    |
 |   token    | string | Token público del comercio que utiliza la librería |
@@ -66,9 +66,9 @@ $paymentResponse = $pagoDigital->payment->paymentWithPlatform(
 
 ```
 
-#### Párametros
+#### Parámetros
 
-|      Párametro      |  Tipo  |                           Descripción                           |
+|      Parámetro      |  Tipo  |                           Descripción                           |
 | :-----------------: | :----: | :-------------------------------------------------------------: |
 |       amount        | number |                    Monto que se va a cobrar                     |
 |     description     | string |                      Descripción del pago                       |
@@ -80,7 +80,7 @@ $paymentResponse = $pagoDigital->payment->paymentWithPlatform(
 |      reference      | string | Referencia de pago, generalmente es el ID del pago del comercio |
 |      location       | string | Coordenadas indicando desde donde se realizó el pago (opcional) |
 
-El párametro `platform` es un enum que solo admite los siguientes datos:
+El parámetro `platform` es un enum que solo admite los siguientes datos:
 
 |  Plataforma  |     Valor      |
 | :----------: | :------------: |
@@ -101,7 +101,7 @@ En caso contrario de no enviar uno de esos párametros en el platform, va a devo
 
 #### Respuesta
 
-|   Párametro   |  Tipo  |                                     Descripción                                      |
+|   Parámetro   |  Tipo  |                                     Descripción                                      |
 | :-----------: | :----: | :----------------------------------------------------------------------------------: |
 |  redirectUrl  | string | Url de redireccionamiento a donde se va a redirigir al cliente para proceder al pago |
 | transactionId | string |                    ID de la transacción generado por PagoDigital                     |
@@ -128,9 +128,9 @@ $paymentResponse = $pagoDigital->payment->paymentWithLink(
 )
 ```
 
-#### Párametros
+#### Parámetros
 
-|  Párametro  |  Tipo  |                                       Descripción                                        |
+|  Parámetro  |  Tipo  |                                       Descripción                                        |
 | :---------: | :----: | :--------------------------------------------------------------------------------------: |
 |   amount    | number |                                 Monto que se va a cobrar                                 |
 | description | string |                                   Descripción del pago                                   |
@@ -139,7 +139,7 @@ $paymentResponse = $pagoDigital->payment->paymentWithLink(
 
 #### Respuesta
 
-|   Párametro   |  Tipo  |                                     Descripción                                      |
+|   Parámetro   |  Tipo  |                                     Descripción                                      |
 | :-----------: | :----: | :----------------------------------------------------------------------------------: |
 |  redirectUrl  | string | Url de redireccionamiento a donde se va a redirigir al cliente para proceder al pago |
 | transactionId | string |                    ID de la transacción generado por PagoDigital                     |
