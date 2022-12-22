@@ -1,5 +1,5 @@
 {
-    "name": "pago-digital/php-library",
+    "name": "pagodigital/php-library",
     "description": "Libreria de pago digital para php",
     "type": "library",
     "license": "MIT",
