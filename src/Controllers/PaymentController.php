@@ -28,9 +28,9 @@ class PaymentController
      * @param string $payerIdentification Identificación de la persona que realiza el pago
      * @param string $payerName Nombre de la persona que realiza el pago
      * @param string $phone Número telefonico de la persona que está pagando
-     * @param TPlatform $platform Plataforma en la que se va a realizar el pago
+     * @param string $platform Plataforma en la que se va a realizar el pago
      * @param string $reference Referencia de pago creada por el comercio
-     * @param ECurrency $currency Moneda en la que se va a cobrar (Así la moneda se coloque en USD, el precio amount debe ir en Gs.)
+     * @param string $currency Moneda en la que se va a cobrar (Así la moneda se coloque en USD, el precio amount debe ir en Gs.)
      * @param string $location Localización del pago (Opcional)
      * @returns array Link de redireccionamiento junto a su ID generado dentro de PagoDigital
      */
@@ -43,8 +43,8 @@ class PaymentController
         $phone,
         $platform,
         $reference,
-        $location,
-        $currency = 'PYG'
+        $currency = 'PYG',
+        $location
     ) {
         try {
             $token = hash('sha256', $reference.strval($amount).$this->commerceToken);
@@ -83,7 +83,7 @@ class PaymentController
      * @param number $amount Monto que se va a cobrar
      * @param string $reference Referencia de pago creada por el comercio
      * @param string $description Descripción del cobro realizada por el comercio
-     * @param ECurrency $currency Moneda en la que se va a cobrar (Así la moneda se coloque en USD, el precio amount debe ir en Gs.)
+     * @param string $currency Moneda en la que se va a cobrar (Así la moneda se coloque en USD, el precio amount debe ir en Gs.)
      * @returns array Link de pago junto a su ID generado dentro de PagoDigital
      */
     public  function paymentWithLink(
