@@ -14,7 +14,7 @@ class PaymentController
     public  $commerceToken;
     public $commerceId;
 
-    public function __construct($commerceId,$commerceToken, $reactNative = false)
+    public function __construct($commerceId, $commerceToken, $reactNative = false)
     {
         $this->commerceId = $commerceId;
         $this->commerceToken = $commerceToken;
@@ -93,7 +93,7 @@ class PaymentController
         $currency = 'PYG'
     ) {
         try {
-            $merchantTransactionId =  strval(round(microtime(true) * 1000));
+            $merchantTransactionId = strval(round(microtime(true) * 1000));
             $baseLink = FRONTBASEURL . "/link";
             $dataForEncode = [
                 'amount' => $amount,
