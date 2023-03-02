@@ -84,13 +84,17 @@ class PaymentController
      * @param string $reference Referencia de pago creada por el comercio
      * @param string $description Descripción del cobro realizada por el comercio
      * @param string $currency Moneda en la que se va a cobrar (Así la moneda se coloque en USD, el precio amount debe ir en Gs.)
+     * @param string $suscriptionInterval Intervalo de suscripción (enviar solo si desea que el producto cuente con suscripción)
+     * @param number $productId ID del producto de la suscripción (Opcional: Solo válido para suscripción)
      * @returns array Link de pago junto a su ID generado dentro de PagoDigital
      */
     public  function paymentWithLink(
         $amount,
         $reference,
         $description,
-        $currency = 'PYG'
+        $currency = 'PYG',
+        $suscriptionInterval = null,
+        $productId = null
     ) {
         try {
             $merchantTransactionId = strval(round(microtime(true) * 1000));
@@ -103,6 +107,8 @@ class PaymentController
                 'commerceToken' => $this->commerceToken,
                 'merchantTransactionId' => $merchantTransactionId,
                 'currency' => $currency,
+                'suscriptionInterval' => $suscriptionInterval,
+                'productId' => $productId,
             ];
             $text = json_encode($dataForEncode);
             $key = $this->commerceToken;
