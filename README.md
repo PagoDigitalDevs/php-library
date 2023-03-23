@@ -126,20 +126,20 @@ $paymentResponse = $pagoDigital->payment->paymentWithLink(
     $description = "Pago de prueba con la librería",
     $reference = "pago-22",
     $currency = "PYG",
-    $suscriptionInterval = "monthly",
+    $subscriptionInterval = "monthly",
 )
 ```
 
 #### Parámetros
 
-|      Párametro      |  Tipo  |                                           Descripción                                            |
-| :-----------------: | :----: | :----------------------------------------------------------------------------------------------: |
-|       amount        | number |                                     Monto que se va a cobrar                                     |
-|     description     | string |                                       Descripción del pago                                       |
-|      reference      | string |                 Referencia de pago, generalmente es el ID del pago del comercio                  |
-|      currency       | string |     Moneda en la que se va a realizar el pago (USD o PYG)(Opcional: Por defecto está en PYG)     |
-| suscriptionInterval | string | Intervalo de suscripción, enviar solamente cuando quieras dar la opción de suscribirse a un pago |
-|      productId      | string | ID del producto de la suscripción, enviar solamente cuando quieras dar la opción de suscripción  |
+|      Párametro       |  Tipo  |                                           Descripción                                            |
+| :------------------: | :----: | :----------------------------------------------------------------------------------------------: |
+|       amount         | number |                                     Monto que se va a cobrar                                     |
+|     description      | string |                                       Descripción del pago                                       |
+|      reference       | string |                 Referencia de pago, generalmente es el ID del pago del comercio                  |
+|      currency        | string |     Moneda en la que se va a realizar el pago (USD o PYG)(Opcional: Por defecto está en PYG)     |
+| subscriptionInterval | string | Intervalo de suscripción, enviar solamente cuando quieras dar la opción de suscribirse a un pago |
+|      productId       | string | ID del producto de la suscripción, enviar solamente cuando quieras dar la opción de suscripción  |
 
 #### Respuesta
 

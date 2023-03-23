@@ -44,10 +44,10 @@ class PaymentController
         $platform,
         $reference,
         $currency = 'PYG',
-        $location
+        $location = null
     ) {
         try {
-            $token = hash('sha256', $reference.strval($amount).$this->commerceToken);
+            $token = hash('sha256', $reference . strval($amount) . $this->commerceToken);
             $client = new Client([
                 'base_uri' => BACKBASEURL,
                 'timeout'  => 5.0,
@@ -57,20 +57,20 @@ class PaymentController
                 'amount' => $amount,
                 'platform' => $platform,
                 'email' => $email,
-                'commerceId'=> $this->commerceId,
+                'commerceId' => $this->commerceId,
                 'description' => $description,
                 'token' => $token,
                 'transactionId' => $reference,
                 'payerName' => $payerName,
                 'payerIdentification' => $payerIdentification,
-                'location' => $location,
                 'currency' => $currency,
+                'location' => $location !== null ? $location : null,
             ];
             $res = $client->request('POST', "/transaction", ['json' => $information]);
             if ($res->getStatusCode() == '200') {
-                $json =(string) $res->getBody();
+                $json = (string) $res->getBody();
                 $json = json_decode($json, true);
-                return print_r($json['data'], true);
+                return $json['data'];
             }
             return $res;
         } catch (\Exception $e) {
@@ -84,7 +84,7 @@ class PaymentController
      * @param string $reference Referencia de pago creada por el comercio
      * @param string $description Descripción del cobro realizada por el comercio
      * @param string $currency Moneda en la que se va a cobrar (Así la moneda se coloque en USD, el precio amount debe ir en Gs.)
-     * @param string $suscriptionInterval Intervalo de suscripción (enviar solo si desea que el producto cuente con suscripción)
+     * @param string $subscriptionInterval Intervalo de suscripción (enviar solo si desea que el producto cuente con suscripción)
      * @param number $productId ID del producto de la suscripción (Opcional: Solo válido para suscripción)
      * @returns array Link de pago junto a su ID generado dentro de PagoDigital
      */
@@ -93,7 +93,7 @@ class PaymentController
         $reference,
         $description,
         $currency = 'PYG',
-        $suscriptionInterval = null,
+        $subscriptionInterval = null,
         $productId = null
     ) {
         try {
@@ -107,20 +107,19 @@ class PaymentController
                 'commerceToken' => $this->commerceToken,
                 'merchantTransactionId' => $merchantTransactionId,
                 'currency' => $currency,
-                'suscriptionInterval' => $suscriptionInterval,
-                'productId' => $productId,
+                'subscriptionInterval' => $subscriptionInterval !== null ? $subscriptionInterval : null,
+                'productId' => $productId !== null ? $productId : null,
             ];
             $text = json_encode($dataForEncode);
             $key = $this->commerceToken;
             $encrypted = CryptoJSAES::encrypt($text, $key);
             $ciphertext = base64_encode($encrypted);
-            $data64 = base64_encode($ciphertext."|". $this->commerceId);
-            $link = $baseLink.'/'.$data64;
-            $res=[
+            $data64 = base64_encode($ciphertext . "|" . $this->commerceId);
+            $link = $baseLink . '/' . $data64;
+            return [
                 'redirectUrl' => $link,
                 'transactionId' => $merchantTransactionId
             ];
-            return print_r($res, true);
         } catch (\Exception $e) {
             echo 'Error',  $e->getMessage(), "\n";
         }
