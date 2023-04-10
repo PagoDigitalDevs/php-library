@@ -9,7 +9,8 @@ Para instalar la librería de PagoDigital se puede hacer con composer:
 ```bash
 composer require pagodigital/php-library
 ```
-Para evitar conflictos, en el archivo composer.json, establece: 
+
+Para evitar conflictos, en el archivo composer.json, establece:
 
 ```bash
 "minimum-stability": "dev"
@@ -134,10 +135,10 @@ $paymentResponse = $pagoDigital->payment->paymentWithLink(
 
 |      Párametro       |  Tipo  |                                           Descripción                                            |
 | :------------------: | :----: | :----------------------------------------------------------------------------------------------: |
-|       amount         | number |                                     Monto que se va a cobrar                                     |
+|        amount        | number |                                     Monto que se va a cobrar                                     |
 |     description      | string |                                       Descripción del pago                                       |
 |      reference       | string |                 Referencia de pago, generalmente es el ID del pago del comercio                  |
-|      currency        | string |     Moneda en la que se va a realizar el pago (USD o PYG)(Opcional: Por defecto está en PYG)     |
+|       currency       | string |     Moneda en la que se va a realizar el pago (USD o PYG)(Opcional: Por defecto está en PYG)     |
 | subscriptionInterval | string | Intervalo de suscripción, enviar solamente cuando quieras dar la opción de suscribirse a un pago |
 |      productId       | string | ID del producto de la suscripción, enviar solamente cuando quieras dar la opción de suscripción  |
 
@@ -147,6 +148,29 @@ $paymentResponse = $pagoDigital->payment->paymentWithLink(
 | :-----------: | :----: | :----------------------------------------------------------------------------------: |
 |  redirectUrl  | string | Url de redireccionamiento a donde se va a redirigir al cliente para proceder al pago |
 | transactionId | string |                    ID de la transacción generado por PagoDigital                     |
+
+## Respuesta
+
+La respuesta del pago será enviada a la URL de callback especificada en el panel de PagoDigital en
+el apartado de editar comercio -> desarrollo.
+
+La respuesta será enviada en formato JSON y contiene los siguientes elementos:
+
+|           key           |  tipo  |                                                                                  descripción                                                                                  |
+| :---------------------: | :----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|          token          | string | Token generado por seguridad, es recomendable utilizarlo para validar los pagos. Se conforma de la siguiente manera: SHA256(merchant_transaction_id + amount + private_token) |
+| merchant_transaction_id | string |                                                             Identificador de la transacción dentro de PAgoDigital                                                             |
+| commerce_transaction_id | string |                                                      Identificador o referencia de la transacción creada por el comercio                                                      |
+|       payer_email       | string |                                                               Correo electrónico de la persona que esta pagando                                                               |
+|  payer_identification   | string |                                                                identificación de la paersona que esta pagando                                                                 |
+|       payer_name        | string |                                                                     Nombre de la persona que esta pagando                                                                     |
+|          phone          | string |                                                               Número telefónico de la persona que esta pagando                                                                |
+|        platform         | string |                                                                     Plataforma con la que se esta pagando                                                                     |
+|         amount          | number |                                                                            Monto de la transacción                                                                            |
+|           fee           | number |                                                                  Comisión de la transacción por PagoDigital                                                                   |
+|       accredited        | number |                                                         Monto que se le acreditó al comercio descontando la comisión                                                          |
+|       description       | string |                                                                             Descripción del pago                                                                              |
+|         status          | string |                                                                 Estado del pago (APPROVED, REFUSED, PENDING)                                                                  |
 
 ## License
 
